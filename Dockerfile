@@ -110,7 +110,7 @@ RUN apk -U add \
 # Copy build files.
 COPY --from=builder /shairport-sync-metadata-reader/install/usr/local/bin/shairport-sync-metadata-reader /usr/local/bin/shairport-sync-metadata-reader
 COPY --from=builder /shairport-sync/build/install/usr/local/bin/shairport-sync /usr/local/bin/shairport-sync
-COPY --from=builder /shairport-sync/build/install/usr/local/share/man/man7 /usr/share/man/man7
+#COPY --from=builder /shairport-sync/build/install/usr/local/share/man/man7 /usr/share/man/man7
 COPY --from=builder /nqptp/nqptp /usr/local/bin/nqptp
 COPY --from=builder /usr/local/lib/libalac.* /usr/local/lib/
 COPY --from=builder /shairport-sync/build/install/etc/shairport-sync.conf.sample /etc/
