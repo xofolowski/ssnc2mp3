@@ -117,11 +117,8 @@ COPY --from=builder /shairport-sync/build/install/etc/shairport-sync.conf.sample
 #COPY --from=builder /shairport-sync/build/install/etc/dbus-1/system.d/shairport-sync-dbus.conf /etc/dbus-1/system.d/
 #COPY --from=builder /shairport-sync/build/install/etc/dbus-1/system.d/shairport-sync-mpris.conf /etc/dbus-1/system.d/
 
-COPY ./etc/s6-overlay/s6-rc.d /etc/s6-overlay/s6-rc.d
-#COPY ./etc/pulse /etc/pulse
-COPY ./ssnc2mp3.sh /usr/local/bin/
-COPY ./shairport-sync.conf /etc/
-RUN chmod +x /etc/s6-overlay/s6-rc.d/01-startup/script.sh
+# Copy root filesystem
+COPY rootfs /
 
 # Create non-root user for running the container -- running as the user 'shairport-sync' also allows
 # Shairport Sync to provide the D-Bus and MPRIS interfaces within the container
