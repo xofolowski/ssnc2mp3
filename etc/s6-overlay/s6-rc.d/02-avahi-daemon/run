@@ -1,3 +1,0 @@
-#!/command/with-contenv sh
-echo "Starting avahi-daemon"
-exec /usr/sbin/avahi-daemon -D
