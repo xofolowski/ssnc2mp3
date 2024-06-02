@@ -36,6 +36,16 @@ do
   lasttitle="$title"
   killall -INT ffmpeg >/dev/null 2>&1
   echo "Grabbing track: $artist - $album - $track - $title" >&2
-  ffmpeg -sample_rate 44100 -ac 2 -f s16le -i /tmp/shairport-sync-audio -codec:a libmp3lame -qscale:a 2 -metadata title="$title" -metadata artist="$artist" -metadata album="$album" -metadata track="$track" "/mp3out/${artist}__${album}__$track - $title.mp3" &>/dev/null &
+  if [ ! -d "/mp3out/$artist" ]
+  then
+    mkdir "/mp3out/$artist"
+    track=1
+  fi
+  if [ ! -d "/mp3out/$artist/$album" ]
+  then
+    mkdir "/mp3out/$artist/$album"
+    track=1
+  fi
+  ffmpeg -sample_rate 44100 -ac 2 -f s16le -i /tmp/shairport-sync-audio -codec:a libmp3lame -qscale:a 2 -metadata title="$title" -metadata artist="$artist" -metadata album="$album" -metadata track="$track" "/mp3out/${artist}/${album}/$track - $title.mp3" &>/dev/null &
   let track++
 done
